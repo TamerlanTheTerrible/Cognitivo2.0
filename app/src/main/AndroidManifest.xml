@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.timur.mainmenu">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.SplashScreen"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat">
+        </activity>
+
+        <activity android:name=".activity.GamesScreen"
+            android:label="@string/app_name"
+            android:theme="@style/Games"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+
+        <activity android:name=".activity.ColorMatchPreGame"
+            android:theme="@style/PreGame"
+            android:parentActivityName=".activity.GamesScreen">
+        </activity>
+
+        <activity android:name=".activity.ColorMatchActivity">
+        </activity>
+
+        <activity android:name=".activity.CardGameActivity"/>
+        <activity android:name=".activity.CardPreGameActivity"
+            android:theme="@style/PreGame"
+            android:parentActivityName=".activity.GamesScreen">
+        </activity>
+
+        <activity android:name=".activity.RainGameActivity"/>
+        <activity android:name=".activity.RainPreGameActivity"
+            android:theme="@style/PreGame"
+            android:parentActivityName=".activity.GamesScreen">
+        </activity>
+        <activity android:name=".activity.RainDropGame"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name=".activity.AfterGameActiviy"/>
+        <activity android:name=".activity.RegistrationActivity"/>
+        <activity android:name=".activity.LoginActivity" android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".activity.UserActivity" android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".activity.LeaderboardActivity" android:parentActivityName=".activity.MainActivity"/>
+        <activity android:name=".ActivityMainTest"/>
+        <activity android:name=".CreateUserActivity"/>
+        <activity android:name=".DeptActivity"/>
+        <activity android:name=".LoginActivityTest"/>
+        <activity android:name=".UserDetailsActivity"/>
+    </application>
+
+</manifest>
+
+
+<!--            android:theme="@style/Theme.MyTheme"    -->

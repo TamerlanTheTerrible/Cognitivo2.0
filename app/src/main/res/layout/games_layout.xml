@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/flexibilityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:text="Flexibility"
+        android:textColor="@color/grey"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    <ImageView
+        android:id="@+id/flexibilityImg"
+        android:layout_width="183sp"
+        android:layout_height="106sp"
+        android:src="@drawable/screen_flex_small"
+        android:layout_below="@+id/flexibilityText"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image_selected"
+        android:padding="3sp"/>
+    <View
+        android:id="@+id/flexibilityDiv"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/pale_grey"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/flexibilityImg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="15sp"/>
+
+
+
+    <TextView
+        android:id="@+id/memoryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:text="Memory"
+        android:textColor="@color/grey"
+        android:textSize="22sp"
+        android:layout_below="@+id/flexibilityDiv"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    <ImageView
+        android:id="@+id/memoryImg"
+        android:layout_width="183sp"
+        android:layout_height="106sp"
+        android:src="@drawable/card_screen_little"
+        android:layout_below="@+id/memoryText"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image_selected"
+        android:padding="3sp"/>
+    <View
+        android:id="@+id/memoryDiv"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/pale_grey"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/memoryImg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="15sp"/>
+
+
+    <TextView
+        android:id="@+id/solvingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:text="Problem Solving"
+        android:textColor="@color/grey"
+        android:textSize="22sp"
+        android:layout_below="@+id/memoryDiv"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+    <ImageView
+        android:id="@+id/solvingImg"
+        android:layout_width="183sp"
+        android:layout_height="106sp"
+        android:src="@drawable/raingame_prot1"
+        android:layout_below="@+id/solvingText"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image_selected"
+        android:padding="3sp"/>
+    <!--<View
+        android:id="@+id/solvingDiv"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/pale_grey"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/solvingImg"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="15sp"/>-->
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/milky_white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Congratulations!"
+            android:id="@+id/txtCongrat"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You have completed the game."
+            android:id="@+id/textCongrat2"
+            android:layout_below="@+id/txtCongrat"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:id="@+id/txtScore"
+            android:layout_marginTop="40dp"
+            android:textSize="80dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_below="@+id/textCongrat2"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="correct answers"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/txtScore"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="  Play next game  "
+            android:id="@+id/txtNextGame"
+            android:gravity="center"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:typeface="sans"
+            android:textColorHighlight="#ff21ff40"
+            android:layout_marginTop="58dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignEnd="@+id/textCongrat2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Replay"
+            android:id="@+id/txtReplay"
+            android:gravity="center"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:typeface="sans"
+            android:textColorHighlight="#ff21ff40"
+            android:layout_below="@+id/txtNextGame"
+            android:layout_alignStart="@+id/txtNextGame"
+            android:layout_alignEnd="@+id/txtNextGame"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Go to main menu"
+            android:id="@+id/txtMainMenu"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textIsSelectable="true"
+            android:gravity="center"
+            android:layout_below="@+id/txtReplay"
+            android:layout_alignStart="@+id/txtReplay"
+            android:layout_alignEnd="@+id/txtReplay"
+            android:layout_marginTop="10dp"/>
+
+    </RelativeLayout>
+</LinearLayout>

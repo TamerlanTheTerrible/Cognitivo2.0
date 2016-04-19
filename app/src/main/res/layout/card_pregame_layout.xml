@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/flexBigImg"
+        android:layout_width="match_parent"
+        android:layout_height="211sp"
+        android:src="@drawable/card_screen_little"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:id="@+id/flexDescriptionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="35sp"
+        android:background="@color/grey">
+        <TextView
+            android:id="@+id/flexGameName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Card Game"
+            android:textSize="25sp"
+            android:background="@color/grey"
+            android:textColor="@color/golden" />
+        <TextView
+            android:id="@+id/flexAbName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VISUAL PERCEPTION"
+            android:textSize="15sp"
+            android:background="@color/grey"
+            android:textColor="@color/white"
+            android:paddingBottom="10sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/flexDescriptionContainer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="35sp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/flexBriefDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20sp"
+            android:text="Brief Description"
+            android:textSize="18sp"
+            android:textColor="@color/orange"
+            android:background="@color/white"/>
+        <TextView
+            android:id="@+id/flexBriefDescription2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10sp"
+            android:text="Find two similar superheroes"
+            android:textSize="15sp"
+            android:background="@color/white"
+            android:paddingRight="35sp"/>
+        <TextView
+            android:id="@+id/flexBestScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15sp"
+            android:text="Best Score"
+            android:textSize="18sp"
+            android:textColor="@color/orange"
+            android:background="@color/white"/>
+        <TextView
+            android:id="@+id/flexBestScore2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10sp"
+            android:text="-"
+            android:textSize="15sp"
+            android:background="@color/white"
+            android:paddingRight="35sp"
+            android:paddingBottom="10sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/flexBeginContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="5sp"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/flexSoroq"
+            android:layout_width="45sp"
+            android:layout_height="45sp"
+            android:text=" ? "
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/flexBegin"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="Begin"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginLeft="15sp"/>
+    </LinearLayout>
+</LinearLayout>

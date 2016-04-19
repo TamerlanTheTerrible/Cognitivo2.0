@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#ffa1c6ff"
+    android:weightSum="1">
+
+    <EditText
+        android:id="@+id/edtUsernameLog"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:hint="User Name"
+        android:ems="10"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/edtPasswordLog"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_selector"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="If you have no account, please Register"
+        android:id="@+id/txtToResgiter"
+        android:textSize="15dp"
+        android:paddingTop="15dp"
+        android:layout_weight="0.03"
+        android:gravity="center"
+        android:textColor="#ff3941ff" />
+
+</LinearLayout>
