@@ -116,7 +116,8 @@ public class MainActivity extends BaseActivity
             intent = new Intent(MainActivity.this, ActivityMainTest.class);
             startActivity(intent);
         } else if (id == R.id.nav_help) {
-
+            intent = new Intent(MainActivity.this, TopScoresActivity.class);
+            startActivity(intent);
         }else if (id == R.id.nav_about) {
 
         }

@@ -37,15 +37,12 @@ public class LeaderboardActivity extends BaseActivity{
         dBservice = dBservice.open();
         colormatchList = dBservice.getAllColormatches();
         getColorScores();
-        //getCardScores();
-        //getRainScore();
+        getCardScores();
+        getRainScore();
     }
 
-    private void getColorScores() {
 
-    }
-
-/*    private void getColorScores(){
+    private void getColorScores(){
         int size = dBservice.getAllColormatches().size();
         if (size>0){
             List<Colormatch> cmList = new ArrayList<>(dBservice.getAllColormatches());
@@ -151,7 +148,7 @@ public class LeaderboardActivity extends BaseActivity{
             lvRaingame = (ListView)findViewById(R.id.lvRainGame);
             lvRaingame.setAdapter(simpleAdapter);
         }
-    }*/
+    }
 
     @Override
     protected void onDestroy() {

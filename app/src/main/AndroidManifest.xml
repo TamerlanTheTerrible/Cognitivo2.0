@@ -59,9 +59,10 @@
         <activity android:name=".activity.LeaderboardActivity" android:parentActivityName=".activity.MainActivity"/>
         <activity android:name=".ActivityMainTest"/>
         <activity android:name=".CreateUserActivity"/>
-        <activity android:name=".DeptActivity"/>
         <activity android:name=".LoginActivityTest"/>
         <activity android:name=".UserDetailsActivity"/>
+        <activity android:name=".activity.TopScoresActivity"/>
+        <activity android:name=".activity.ColorMatchAfterGameActivity"/>
     </application>
 
 </manifest>

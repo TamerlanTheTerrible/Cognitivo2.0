@@ -2,6 +2,8 @@ package com.example.timur.mainmenu;
 
 import android.util.Log;
 
+import com.example.timur.mainmenu.model.Colormatch;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +37,21 @@ public class JSONParser {
             Log.d("JSONParser => parseDepartment", e.getMessage());
         }
         return arrayList;
+    }
+
+    public ArrayList<Colormatch> parseColormatch(JSONObject object){
+        ArrayList<Colormatch> cmList = new ArrayList<>();
+        try{
+            JSONArray jsonArray = object.getJSONArray("Value");
+            JSONObject jsonObject = null;
+            for(int i=0; i<jsonArray.length(); i++){
+                jsonObject = jsonArray.getJSONObject(i);
+                cmList.add((new Colormatch(jsonObject.getInt("Score"), jsonObject.getInt("WrongAnswer"), jsonObject.getString("Username"), jsonObject.getString("Date"))));
+            }
+        }catch (JSONException e){
+            Log.d("JSONParser => parseColormatch", e.getMessage());
+        }
+        return  cmList;
     }
 
     public boolean parseUserAuth(JSONObject object)
