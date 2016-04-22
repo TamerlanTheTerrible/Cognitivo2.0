@@ -63,6 +63,7 @@
         <activity android:name=".UserDetailsActivity"/>
         <activity android:name=".activity.TopScoresActivity"/>
         <activity android:name=".activity.ColorMatchAfterGameActivity"/>
+        <activity android:name=".activity.CardAfterGameActivity"/>
     </application>
 
 </manifest>

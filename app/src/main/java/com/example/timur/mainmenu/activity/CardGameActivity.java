@@ -148,7 +148,7 @@ public class CardGameActivity extends BaseActivity {
 
     public void gameOver() {
         //Toast.makeText(getApplicationContext(), "Game Over", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(CardGameActivity.this, AfterGameActiviy.class);
+        Intent intent = new Intent(CardGameActivity.this, CardAfterGameActivity.class);
         intent.putExtra("cgScore", correctGuess);
         intent.putExtra("cgTurns", turns);
         //Toast.makeText(getApplicationContext(), correctGuess+" "+currentTime, Toast.LENGTH_SHORT).show();

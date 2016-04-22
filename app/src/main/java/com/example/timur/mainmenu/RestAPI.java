@@ -100,7 +100,7 @@ public class RestAPI {
         return finalValue;
     }
 
-    public JSONObject CreateNewAccount(String firstName,String lastName,String userName,String password) throws Exception {
+    public JSONObject CreateNewAccount(String firstName,String lastName,String dob, String email, String country,String userName,String password) throws Exception {
         JSONObject result = null;
         JSONObject o = new JSONObject();
         JSONObject p = new JSONObject();
@@ -108,6 +108,9 @@ public class RestAPI {
         o.put("method", "CreateNewAccount");
         p.put("firstName",mapObject(firstName));
         p.put("lastName",mapObject(lastName));
+        p.put("dob",mapObject(dob));
+        p.put("email",mapObject(email));
+        p.put("country",mapObject(country));
         p.put("userName",mapObject(userName));
         p.put("password",mapObject(password));
         o.put("parameters", p);

@@ -15,10 +15,11 @@ import android.content.Intent;
 import android.os.Build;
 
 import com.example.timur.mainmenu.activity.LoginActivity;
+import com.example.timur.mainmenu.model.User;
 
 public class CreateUserActivity extends Activity {
 
-    EditText etfirstName, etLastName, etUsername, etPassword;
+    EditText etfirstName, etLastName, etUsername, etPassword, etDOB, etEmail, etCountry;
     Button btnCreateUser;
 
     @Override
@@ -32,6 +33,9 @@ public class CreateUserActivity extends Activity {
         etLastName = (EditText) findViewById(R.id.et_lastname);
         etUsername = (EditText) findViewById(R.id.et_cu_username);
         etPassword = (EditText) findViewById(R.id.et_cu_password);
+        etDOB = (EditText) findViewById(R.id.et_cu_dob);
+        etEmail = (EditText) findViewById(R.id.et_cu_email);
+        etCountry = (EditText) findViewById(R.id.et_cu_country);
         btnCreateUser=(Button) findViewById(R.id.btn_createuser);
 
         btnCreateUser.setOnClickListener(new View.OnClickListener() {
@@ -40,15 +44,18 @@ public class CreateUserActivity extends Activity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                String firstname, lastname, username, password;
+                String firstname, lastname, username, password, dob, email, country;
 
                 firstname = etfirstName.getText().toString();
                 lastname = etLastName.getText().toString();
                 username = etUsername.getText().toString();
                 password = etPassword.getText().toString();
+                dob = etDOB.getText().toString();
+                email = etEmail.getText().toString();
+                country = etCountry.getText().toString();
 
-                UserDetailsTable userDetail = new UserDetailsTable(firstname,
-                        lastname, username, password);
+                User userDetail = new User(firstname,
+                        lastname, username, password, dob, email, country);
 
                 new AsyncCreateUser().execute(userDetail);
 
@@ -58,17 +65,17 @@ public class CreateUserActivity extends Activity {
     }
 
     protected class AsyncCreateUser extends
-            AsyncTask<UserDetailsTable, Void, Void> {
+            AsyncTask<User, Void, Void> {
 
         @Override
-        protected Void doInBackground(UserDetailsTable... params) {
+        protected Void doInBackground(User... params) {
 
             RestAPI api = new RestAPI();
             try {
 
-                api.CreateNewAccount(params[0].getFirstName(),
-                        params[0].getLastName(), params[0].getUserName(),
-                        params[0].getPassword());
+                api.CreateNewAccount(params[0].getFirstname(),params[0].getLastname(),
+                        params[0].getDOB(), params[0].getEmail(), params[0].getCountry(),
+                        params[0].getUsername(),params[0].getPassword());
 
             } catch (Exception e) {
                 // TODO Auto-generated catch block

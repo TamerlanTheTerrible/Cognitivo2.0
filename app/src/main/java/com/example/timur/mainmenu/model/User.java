@@ -16,8 +16,8 @@ public class User {
     private String Password;
 
     public User(){};
-    public User(String fname, String lname, String dob, String country,
-                String email, String username, String pswrd){
+    public User(String fname, String lname, String dob,
+                String email, String country, String username, String pswrd){
         Firstname=fname;
         Lastname=lname;
         DOB = dob;
