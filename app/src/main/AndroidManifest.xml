@@ -44,12 +44,11 @@
             android:parentActivityName=".activity.GamesScreen">
         </activity>
 
-        <activity android:name=".activity.RainGameActivity"/>
         <activity android:name=".activity.RainPreGameActivity"
             android:theme="@style/PreGame"
             android:parentActivityName=".activity.GamesScreen">
         </activity>
-        <activity android:name=".activity.RainDropGame"
+        <activity android:name=".activity.RainGameActivity"
             android:label="@string/app_name">
         </activity>
         <activity android:name=".activity.AfterGameActiviy"/>
@@ -64,6 +63,8 @@
         <activity android:name=".activity.TopScoresActivity"/>
         <activity android:name=".activity.ColorMatchAfterGameActivity"/>
         <activity android:name=".activity.CardAfterGameActivity"/>
+        <activity android:name=".activity.RainAfterGameActivity"/>
+        <activity android:name=".activity.LeaderboardActivity2"/>
     </application>
 
 </manifest>

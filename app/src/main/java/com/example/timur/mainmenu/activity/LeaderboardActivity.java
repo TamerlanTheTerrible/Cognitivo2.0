@@ -1,7 +1,6 @@
 package com.example.timur.mainmenu.activity;
 
 import android.os.Bundle;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -88,8 +87,8 @@ public class LeaderboardActivity extends BaseActivity{
             for(int i=0; i<size; i++){
                 Cardgame cg = cgList.get(i);
                 usernameList.add(cg.getUsername());
-                scoreList.add(cg.getTurns());
-                timeList.add(cg.getSpentTime());
+                scoreList.add(cg.getScore());
+                timeList.add(cg.getWrongAnswer());
             }
             ArrayList<Map<String, Object>> data;
             data = new ArrayList<>(size);

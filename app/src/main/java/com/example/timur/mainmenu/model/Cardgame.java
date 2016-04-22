@@ -6,14 +6,14 @@ package com.example.timur.mainmenu.model;
 public class Cardgame {
     private int cgID;
     private String date;
-    private int turns;
-    private int spentTime;
+    private int score;
+    private int wrongAnswer;
     private String userName;
 
     public Cardgame(int _score, int _spentTime, String _userName, String _date){
         date = _date;
-        turns = _score;
-        spentTime = _spentTime;
+        score = _score;
+        wrongAnswer = _spentTime;
         userName = _userName;
     }
 
@@ -27,20 +27,20 @@ public class Cardgame {
         date = _date;
     }
 
-    public int getTurns(){
-        return turns;
+    public int getScore(){
+        return score;
     }
 
-    public void setTurns(int _score){
-        turns = _score;
+    public void setScore(int _score){
+        score = _score;
     }
 
-    public int getSpentTime(){
-        return spentTime;
+    public int getWrongAnswer(){
+        return wrongAnswer;
     }
 
-    public void setSpentTime(int _spentTime){
-        spentTime = _spentTime;
+    public void setWrongAnswer(int _spentTime){
+        wrongAnswer = _spentTime;
     }
 
     public String getUsername(){

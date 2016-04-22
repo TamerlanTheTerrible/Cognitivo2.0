@@ -23,7 +23,7 @@ public class RainPreGameActivity extends AppCompatActivity {
         btnBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(RainPreGameActivity.this, RainDropGame.class));
+                startActivity(new Intent(RainPreGameActivity.this, RainGameActivity.class));
                 finish();
             }
         });

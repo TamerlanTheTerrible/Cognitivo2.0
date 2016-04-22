@@ -119,7 +119,8 @@ public class MainActivity extends BaseActivity
             intent = new Intent(MainActivity.this, TopScoresActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_about) {
-
+            intent = new Intent(MainActivity.this, LeaderboardActivity2.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

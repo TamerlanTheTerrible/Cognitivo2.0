@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.timur.mainmenu.R;
 import com.example.timur.mainmenu.RestAPI;
 import com.example.timur.mainmenu.model.Cardgame;
+import com.example.timur.mainmenu.model.Raingame;
 import com.example.timur.mainmenu.service.DBservice;
 
 import java.util.Calendar;
@@ -17,7 +18,7 @@ import java.util.Calendar;
 /**
  * Created by Timur on 4/19/2016.
  */
-public class CardAfterGameActivity extends BaseActivity{
+public class RainAfterGameActivity extends BaseActivity{
     private TextView txtScore, txtAnotherGame, txtReplay, txtMainMenu;
     DBservice dbService;
     Intent intent;
@@ -36,26 +37,26 @@ public class CardAfterGameActivity extends BaseActivity{
         txtScore = (TextView)findViewById(R.id.txtScore);
 
         intent = getIntent();
-        final int score = intent.getIntExtra("cgScore", -1);
-        final int wrongAnswer = intent.getIntExtra("cgTurns", -1);
+        final int score = intent.getIntExtra("rgScore", -1);
+        final int wrongAnswer = intent.getIntExtra("rgWrongAnswer", -1);
         Calendar c = Calendar.getInstance();
         final String date = Integer.toString(c.get(Calendar.DATE));
-        final Cardgame cg  = new Cardgame(score, wrongAnswer, BaseActivity.USERNAME, date);
+        final Raingame rg  = new Raingame(score, wrongAnswer, BaseActivity.USERNAME, date);
         txtScore.setText(Integer.toString(score));
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()){
                     case R.id.txtNextGame:
-                        intent = new Intent(CardAfterGameActivity.this, GamesScreen.class);
-                        new AsyncToDB().execute(cg);
+                        intent = new Intent(RainAfterGameActivity.this, GamesScreen.class);
+                        new AsyncToDB().execute(rg);
                         break;
                     case R.id.txtMainMenu:
-                        intent = new Intent(CardAfterGameActivity.this, MainActivity.class);
-                        new AsyncToDB().execute(cg);
+                        intent = new Intent(RainAfterGameActivity.this, MainActivity.class);
+                        new AsyncToDB().execute(rg);
                         break;
                     case R.id.txtReplay:
-                        intent = new Intent(CardAfterGameActivity.this, CardAfterGameActivity.class);
+                        intent = new Intent(RainAfterGameActivity.this, RainAfterGameActivity.class);
                         break;
                 }
             }
@@ -71,17 +72,17 @@ public class CardAfterGameActivity extends BaseActivity{
     }
 
     protected class AsyncToDB extends
-            AsyncTask<Cardgame, Void, Void> {
+            AsyncTask<Raingame, Void, Void> {
 
         @Override
-        protected Void doInBackground(Cardgame... params) {
+        protected Void doInBackground(Raingame... params) {
 
             RestAPI api = new RestAPI();
             try {
 
-                api.CreateCardgame(params[0].getUsername(),
+                api.CreateDropgame(params[0].getUsername(),
                         params[0].getDate(), params[0].getScore(),
-                        params[0].getWrongAnswer());
+                        params[0].getWrongAnswers());
 
             } catch (Exception e) {
                 // TODO Auto-generated catch block

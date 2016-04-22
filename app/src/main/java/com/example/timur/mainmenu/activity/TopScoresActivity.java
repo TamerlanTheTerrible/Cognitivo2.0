@@ -12,7 +12,9 @@ import com.example.timur.mainmenu.DeptTable;
 import com.example.timur.mainmenu.JSONParser;
 import com.example.timur.mainmenu.R;
 import com.example.timur.mainmenu.RestAPI;
+import com.example.timur.mainmenu.model.Cardgame;
 import com.example.timur.mainmenu.model.Colormatch;
+import com.example.timur.mainmenu.model.Raingame;
 
 import org.json.JSONObject;
 
@@ -43,21 +45,21 @@ public class TopScoresActivity  extends BaseActivity{
     }
 
     protected class AsyncLoadColorMatchDetails extends
-            AsyncTask<Void, JSONObject, ArrayList<Colormatch>> {
-        ArrayList<Colormatch> cm = null;
+            AsyncTask<Void, JSONObject, ArrayList<Raingame>> {
+        ArrayList<Raingame> cm = null;
 
         @Override
-        protected ArrayList<Colormatch> doInBackground(Void... params) {
+        protected ArrayList<Raingame> doInBackground(Void... params) {
             // TODO Auto-generated method stub
 
             RestAPI api = new RestAPI();
             try {
 
-                JSONObject jsonObj = api.GetColormatchDetails();
+                JSONObject jsonObj = api.GetDropgameDetails();
 
                 JSONParser parser = new JSONParser();
 
-                cm = parser.parseColormatch(jsonObj);
+                cm = parser.parseRaingame(jsonObj);
 
             } catch (Exception e) {
                 // TODO Auto-generated catch block
@@ -69,7 +71,7 @@ public class TopScoresActivity  extends BaseActivity{
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Colormatch> result) {
+        protected void onPostExecute(ArrayList<Raingame> result) {
             // TODO Auto-generated method stub
 
             for (int i = 0; i < result.size(); i++) {

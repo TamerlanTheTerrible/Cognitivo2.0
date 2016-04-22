@@ -2,7 +2,9 @@ package com.example.timur.mainmenu;
 
 import android.util.Log;
 
+import com.example.timur.mainmenu.model.Cardgame;
 import com.example.timur.mainmenu.model.Colormatch;
+import com.example.timur.mainmenu.model.Raingame;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +49,36 @@ public class JSONParser {
             for(int i=0; i<jsonArray.length(); i++){
                 jsonObject = jsonArray.getJSONObject(i);
                 cmList.add((new Colormatch(jsonObject.getInt("Score"), jsonObject.getInt("WrongAnswer"), jsonObject.getString("Username"), jsonObject.getString("Date"))));
+            }
+        }catch (JSONException e){
+            Log.d("JSONParser => parseColormatch", e.getMessage());
+        }
+        return  cmList;
+    }
+
+    public ArrayList<Cardgame> parseCardgame(JSONObject object){
+        ArrayList<Cardgame> cmList = new ArrayList<>();
+        try{
+            JSONArray jsonArray = object.getJSONArray("Value");
+            JSONObject jsonObject = null;
+            for(int i=0; i<jsonArray.length(); i++){
+                jsonObject = jsonArray.getJSONObject(i);
+                cmList.add((new Cardgame(jsonObject.getInt("Score"), jsonObject.getInt("WrongAnswer"), jsonObject.getString("Username"), jsonObject.getString("Date"))));
+            }
+        }catch (JSONException e){
+            Log.d("JSONParser => parseColormatch", e.getMessage());
+        }
+        return  cmList;
+    }
+
+    public ArrayList<Raingame> parseRaingame(JSONObject object){
+        ArrayList<Raingame> cmList = new ArrayList<>();
+        try{
+            JSONArray jsonArray = object.getJSONArray("Value");
+            JSONObject jsonObject = null;
+            for(int i=0; i<jsonArray.length(); i++){
+                jsonObject = jsonArray.getJSONObject(i);
+                cmList.add((new Raingame(jsonObject.getInt("Score"), jsonObject.getInt("WrongAnswer"), jsonObject.getString("Username"), jsonObject.getString("Date"))));
             }
         }catch (JSONException e){
             Log.d("JSONParser => parseColormatch", e.getMessage());
