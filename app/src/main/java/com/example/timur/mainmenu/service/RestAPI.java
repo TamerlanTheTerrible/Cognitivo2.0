@@ -1,5 +1,5 @@
 /* JSON API for android appliation */
-package com.example.timur.mainmenu;
+package com.example.timur.mainmenu.service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -171,12 +171,12 @@ public class RestAPI {
         return result;
     }
 
-    public JSONObject GetUserDetails(String userName) throws Exception {
+    public JSONObject GetUser(String userName) throws Exception {
         JSONObject result = null;
         JSONObject o = new JSONObject();
         JSONObject p = new JSONObject();
         o.put("interface","RestAPI");
-        o.put("method", "GetUserDetails");
+        o.put("method", "GetUser");
         p.put("userName",mapObject(userName));
         o.put("parameters", p);
         String s = o.toString();

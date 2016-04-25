@@ -10,7 +10,6 @@ import java.util.List;
 import com.example.timur.mainmenu.R;
 import com.example.timur.mainmenu.model.GameTable;
 import com.example.timur.mainmenu.memory.ImageHolder;
-//import com.example.timur.mainmenu.PlayerScore;
 
 
 public class Common {
@@ -124,15 +123,5 @@ public class Common {
         return timeToString(getMinutesValue(time), getSecondsValue(time));
     }
 
-    /**public List<PlayerScore> getCurrentTableHighScore(
-            List<PlayerScore> players, String tableID) {
-        List<PlayerScore> tableScores = new ArrayList<PlayerScore>();
-        for (PlayerScore score : players) {
-            if (score.getTable().equals(tableID)) {
-                tableScores.add(score);
-            }
-        }
-        return tableScores;
-    }*/
 
 }

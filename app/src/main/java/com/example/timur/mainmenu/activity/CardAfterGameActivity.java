@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.timur.mainmenu.R;
-import com.example.timur.mainmenu.RestAPI;
+import com.example.timur.mainmenu.service.RestAPI;
 import com.example.timur.mainmenu.model.Cardgame;
 import com.example.timur.mainmenu.service.DBservice;
 

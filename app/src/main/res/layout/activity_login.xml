@@ -65,9 +65,22 @@
         android:id="@+id/btn_Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/login"
         android:layout_below="@+id/et_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:text="@string/login" />
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="If you have no account, please Register"
+        android:id="@+id/txtToReg"
+        android:textSize="15dp"
+        android:paddingTop="15dp"
+        android:layout_weight="0.03"
+        android:gravity="center"
+        android:textColor="#ff3941ff"
+        android:layout_marginTop="72dp"
+        android:layout_below="@+id/btn_Login"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

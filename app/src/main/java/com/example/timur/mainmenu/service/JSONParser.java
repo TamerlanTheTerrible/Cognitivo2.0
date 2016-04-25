@@ -1,10 +1,11 @@
-package com.example.timur.mainmenu;
+package com.example.timur.mainmenu.service;
 
 import android.util.Log;
 
 import com.example.timur.mainmenu.model.Cardgame;
 import com.example.timur.mainmenu.model.Colormatch;
 import com.example.timur.mainmenu.model.Raingame;
+import com.example.timur.mainmenu.model.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,25 +21,6 @@ public class JSONParser {
     public JSONParser()
     {
         super();
-    }
-
-    public ArrayList<DeptTable> parseDepartment(JSONObject object)
-    {
-        ArrayList<DeptTable> arrayList=new ArrayList<DeptTable>();
-        try {
-            JSONArray jsonArray=object.getJSONArray("Value");
-            JSONObject jsonObj=null;
-            for(int i=0;i<jsonArray.length();i++)
-            {
-                jsonObj=jsonArray.getJSONObject(i);
-                arrayList.add(new DeptTable(jsonObj.getInt("no"), jsonObj.getString("name")));
-            }
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            Log.d("JSONParser => parseDepartment", e.getMessage());
-        }
-        return arrayList;
     }
 
     public ArrayList<Colormatch> parseColormatch(JSONObject object){
@@ -98,16 +80,18 @@ public class JSONParser {
         return userAtuh;
     }
 
-    public UserDetailsTable parseUserDetails(JSONObject object)
+    public User parseUser(JSONObject object)
     {
-        UserDetailsTable userDetail=new UserDetailsTable();
+        User userDetail=new User();
 
         try {
             JSONObject jsonObj=object.getJSONArray("Value").getJSONObject(0);
 
-            userDetail.setFirstName(jsonObj.getString("firstName"));
-            userDetail.setLastName(jsonObj.getString("lastName"));
-
+            userDetail.setFirstname(jsonObj.getString("firstName"));
+            userDetail.setLastname(jsonObj.getString("lastName"));
+            userDetail.setDOB(jsonObj.getString("dob"));
+            userDetail.setEmail(jsonObj.getString("email"));
+            userDetail.setCountry(jsonObj.getString("country"));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             Log.d("JSONParser => parseUserDetails", e.getMessage());

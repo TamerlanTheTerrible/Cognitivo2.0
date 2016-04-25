@@ -1,5 +1,6 @@
 package com.example.timur.mainmenu.activity;
 
+import com.example.timur.mainmenu.R;
 import com.example.timur.mainmenu.activity.GameSettingsActivity;
 /*import com.example.timur.mainmenu.LocalHighScoreActivity;
 import com.example.timur.mainmenu.activity.NewGameSelectionActivity;
@@ -12,12 +13,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.timur.mainmenu.common.Common;
 
@@ -25,12 +33,9 @@ import com.example.timur.mainmenu.common.Common;
  * Created by Timur on 2/26/2016.
  */
 public class BaseActivity extends AppCompatActivity {
-    public Common common = new Common();
     public Vibrator vibrator;
     public static String USERNAME="user1";
     public static boolean LOGGED_IN = false;
-    private String password;
-    private boolean loggedIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,42 +45,13 @@ public class BaseActivity extends AppCompatActivity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
-/*    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
+    public static void playCorrectAnswer(Context context){
+        MediaPlayer mpCorrect = MediaPlayer.create(context, R.raw.correct_answer);
+        mpCorrect.start();
     }
 
-     @Override
-   public boolean onOptionsItemSelected(MenuItem item) {
-        AudioPlayer.play(this, R.raw.button);
-
-        switch (item.getItemId()) {
-            case R.id.menu_new_game:
-                startActivity(new Intent(this, NewGameSelectionActivity.class));
-                return true;
-            case R.id.menu_settings:
-                Intent settingsActivityIntent = new Intent(this,
-                        GameSettingsActivity.class);
-                startActivity(settingsActivityIntent);
-                return true;
-            case R.id.menu_high_score:
-                startActivity(new Intent(this, LocalHighScoreActivity.class));
-            case R.id.menu_about:
-                Dialog aboutDialog = new AboutDialog(this);
-                aboutDialog.show();
-
-        }
-
-        return false;
+    public static void  playWrongAnswer(Context context){
+        MediaPlayer  mpWrong = MediaPlayer.create(context, R.raw.wrong_answer);
+        mpWrong.start();
     }
-
-    public long getVibrationIntensity() {
-        if (!GameSettingsActivity.getVibrate(this.getApplicationContext())) {
-            return new Long(0);
-        } else
-            return Constants.VIBRATE_ITENSITY;
-    }*/
 }

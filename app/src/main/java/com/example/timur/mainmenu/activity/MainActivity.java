@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.timur.mainmenu.ActivityMainTest;
 import com.example.timur.mainmenu.R;
 import com.example.timur.mainmenu.service.DBservice;
 
@@ -33,16 +32,6 @@ public class MainActivity extends BaseActivity
 
         txtMotivation = (TextView)findViewById(R.id.motivationText);
         txtMotivation.setText("hello, "+ USERNAME);
-        dbService = new DBservice(this);
-        createDB();
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,7 +63,7 @@ public class MainActivity extends BaseActivity
         }
     }
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -94,7 +83,7 @@ public class MainActivity extends BaseActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -103,37 +92,37 @@ public class MainActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_scores) {
-            intent = new Intent(MainActivity.this, LeaderboardActivity.class);
+            intent = new Intent(MainActivity.this, LeaderboardActivityServer.class);
             startActivity(intent);
         } else if (id == R.id.nav_account) {
-            if(LOGGED_IN ==false){
-               intent = new Intent(MainActivity.this, LoginActivity.class);
+            if(!LOGGED_IN){
+               intent = new Intent(MainActivity.this, LoginActivityServer.class);
             }else{
-                intent = new Intent(MainActivity.this, UserActivity.class);
+                intent = new Intent(MainActivity.this, UserDetailsActivity.class);
             }
             startActivity(intent);
-        } else if (id == R.id.nav_settings) {
+        } /*else if (id == R.id.nav_settings) {
             intent = new Intent(MainActivity.this, ActivityMainTest.class);
             startActivity(intent);
-        } else if (id == R.id.nav_help) {
+        }*/ /*else if (id == R.id.nav_help) {
             intent = new Intent(MainActivity.this, TopScoresActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_about) {
-            intent = new Intent(MainActivity.this, LeaderboardActivity2.class);
+            intent = new Intent(MainActivity.this, LeaderboardActivityServer.class);
             startActivity(intent);
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+/*
     public void createDB(){
         dbService = dbService.open();
         if(dbService.isTableEmpty()){
-            dbService.insertUser("test", "test", "01/01/2000", "Uzbekistan", "test@mail.com", "test", "test");
+            dbService.insertUser("user1", "user1", "01/01/2000", "Uzbekistan", "user1@mail.com", "user1", "user1");
             Toast.makeText(getApplicationContext(), "Table added", Toast.LENGTH_SHORT).show();
         }
         dbService.close();
-    }
+    }*/
 }

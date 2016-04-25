@@ -1,6 +1,9 @@
 package com.example.timur.mainmenu.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,7 +12,9 @@ import android.os.SystemClock;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -36,12 +41,14 @@ import java.util.TimerTask;
 /**
  * Created by Timur on 2/26/2016.
  */
-public class CardGameActivity extends BaseActivity {
+public class CardGameActivity extends Activity {
 
     public List<GameTable> gameTables;
     public Common common = new Common();
     public Vibrator vibrator;
-    Toast toast;
+    private Toast toast;
+    private Context context;
+    private ImageView toastImage;
     private ImageView newGameButton;
     private ImageView localHighScoreButton;
     private static Object lock = new Object();
@@ -69,6 +76,7 @@ public class CardGameActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.card_game_layout);
         gameTables = common.getCardGameTables();
         turnsCaption = ((TextView)findViewById(R.id.turns_caption));
@@ -77,22 +85,7 @@ public class CardGameActivity extends BaseActivity {
         buttonListener = new ButtonListener();
         handler = new UpdateCardsHandler();
         chronometer = (Chronometer)findViewById(R.id.timmer);
-        /*newGameButton = (ImageView)findViewById(R.id.game_new_game_button);
-        newGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openNewCardGameDialog();
-            }
-        });*/
-        /**localHighScoreButton = (ImageView) findViewById(R.id.game_local_highscore_button);
-        localHighScoreButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Intent intent = new Intent(CardGameActivity.this,
-                        CardGameLocalHighScoreActivity.class);
-                startActivity(intent);
-            }
-        });*/
+        context = getApplicationContext();
 
         newGame(getIntent().getIntExtra(Constants.GAME_TABLE_ROW,
                 Constants.DEFAULT_GAME_TABLE_SIZE_ROW), getIntent()
@@ -194,8 +187,7 @@ public class CardGameActivity extends BaseActivity {
                     t = r.nextInt(i);
                 }
                 t = list.remove(t).intValue();
-                gameTable[i % TABLE_COL_COUNT][i / TABLE_COL_COUNT] = t
-                        % (size / 2);
+                gameTable[i % TABLE_COL_COUNT][i / TABLE_COL_COUNT] = t % (size / 2);
 
                 Log.i("loadCards()", "card[" + (i % TABLE_COL_COUNT) + "]["
                         + (i / TABLE_COL_COUNT) + "]="
@@ -291,30 +283,6 @@ public class CardGameActivity extends BaseActivity {
         }
     }
 
-/*    public void openNewCardGameDialog() {
-        ArrayList<String> captions = new ArrayList<String>();
-        for (GameTable gt : gameTables) {
-            captions.add(gt.toString());
-        }
-        new AlertDialog.Builder(this).setTitle(R.string.select_grid_size_title)
-                .setItems(captions.toArray(new CharSequence[captions.size()]),
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(
-                                    DialogInterface dialoginterface, int i) {
-                                startCardGame(i);
-                            }
-                        }).show();
-    }*/
-
-/*    public void startCardGame(int selected) {
-        Intent viewActivityIntent = new Intent(this, CardGameActivity.class);
-        viewActivityIntent.putExtra(Constants.GAME_TABLE_COL, gameTables.get(
-                selected).getColumns());
-        viewActivityIntent.putExtra(Constants.GAME_TABLE_ROW, gameTables.get(
-                selected).getRows());
-        startActivity(viewActivityIntent);
-    }*/
-
     class UpdateCardsHandler extends Handler {
 
         @Override
@@ -327,6 +295,8 @@ public class CardGameActivity extends BaseActivity {
         public void checkCards() {
             if (gameTable[secondCard.getX()][secondCard.getY()] == gameTable[firstCard
                     .getX()][firstCard.getY()]) {
+                yesToast();
+                BaseActivity.playCorrectAnswer(context);
                 secondCard.getButton().setClickable(false);
                 firstCard.getButton().setClickable(false);
                 hideOnRotation(secondCard.getButton(), backImage, 0, 90);
@@ -334,8 +304,11 @@ public class CardGameActivity extends BaseActivity {
                 correctGuess++;
                 //vibrator.vibrate(getVibrationIntensity());
             } else {
+                noToast();
+                BaseActivity.playWrongAnswer(context);
                 applyRotation(secondCard.getButton(), backImage, 0, 90);
                 applyRotation(firstCard.getButton(), backImage, 0, 90);
+
             }
             firstCard = null;
             secondCard = null;
@@ -350,6 +323,39 @@ public class CardGameActivity extends BaseActivity {
             } else
                 return Constants.VIBRATE_ITENSITY;
         }
+
+        void yesToast(){
+            toast = new Toast(context);
+
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.toast_correct_wrong_layout, (ViewGroup)findViewById(R.id.custom_dialog));
+            toastImage = (ImageView)layout.findViewById(R.id.toastImage);
+            toastImage.setImageResource(R.drawable.correct);
+            toast = new Toast(context);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL,0, 400);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setView(layout);
+            toast.show();
+        }
+
+        //custom Toast for wrong answer
+        void noToast(){
+            toast = new Toast(context);
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.toast_correct_wrong_layout, (ViewGroup)findViewById(R.id.custom_dialog));
+            toastImage = (ImageView)layout.findViewById(R.id.toastImage);
+            toastImage.setImageResource(R.drawable.wrong);
+            toast = new Toast(context);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL,0, 400);
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setView(layout);
+            toast.show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        // do nothing.
     }
 }
 

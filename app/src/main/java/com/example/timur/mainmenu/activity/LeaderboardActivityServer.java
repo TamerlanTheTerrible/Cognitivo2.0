@@ -8,9 +8,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.example.timur.mainmenu.JSONParser;
+import com.example.timur.mainmenu.service.JSONParser;
 import com.example.timur.mainmenu.R;
-import com.example.timur.mainmenu.RestAPI;
+import com.example.timur.mainmenu.service.RestAPI;
 import com.example.timur.mainmenu.model.Cardgame;
 import com.example.timur.mainmenu.model.Colormatch;
 import com.example.timur.mainmenu.model.Raingame;
@@ -19,12 +19,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by Timur on 4/22/2016.
  */
-public class LeaderboardActivity2 extends BaseActivity {
+public class LeaderboardActivityServer extends BaseActivity {
     ListView lvColorMatch, lvCardGame, lvRaingame;
     Context context;
     //ArrayList<String> data;
@@ -43,6 +44,8 @@ public class LeaderboardActivity2 extends BaseActivity {
         setContentView(R.layout.leaderboard_layout);
         context = this;
         Toast.makeText(this, "Loading Please Wait..", Toast.LENGTH_SHORT).show();
+        new AsyncLoadColorMatchDetails().execute();
+        new AsyncLoadCardGameDetails().execute();
         new AsyncLoadRainGameDetails().execute();
 
     }
@@ -75,14 +78,13 @@ public class LeaderboardActivity2 extends BaseActivity {
         @Override
         protected void onPostExecute(ArrayList<Raingame> result) {
             // TODO Auto-generated method stub
-
             int size = result.size();
             int l=1;
+            if(size>3){
+                size=3;
+            }
             rData = new ArrayList<Map<String, Object>>(size);
             Map<String, Object> m;
-            if(size>5){
-                size=5;
-            }
             for(int j=0; j<size; j++){
                 m = new HashMap<String, Object>();
                 m.put(USER_NAME, result.get(j).getUsername());
@@ -97,9 +99,6 @@ public class LeaderboardActivity2 extends BaseActivity {
             rAdapter = new SimpleAdapter(getApplicationContext(), rData, R.layout.item_rain_game, from, to);
             lvRaingame.setAdapter(rAdapter);
             //adapter.notifyDataSetChanged();
-
-            new AsyncLoadCardGameDetails().execute();
-            Toast.makeText(context,"Loading Completed",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -138,13 +137,13 @@ public class LeaderboardActivity2 extends BaseActivity {
             int l=1;
             cgData = new ArrayList<Map<String, Object>>(size);
             Map<String, Object> m;
-            if(size>5){
-                size=5;
+            if(size>3){
+                size=3;
             }
             for(int j=0; j<size; j++){
                 m = new HashMap<String, Object>();
                 m.put(USER_NAME, result.get(j).getUsername());
-                m.put(USER_SCORE, result.get(j).getScore());
+                m.put(USER_SCORE, result.get(j).getWrongAnswer());
                 m.put(USER_RANKING, l+".");
                 cgData.add(m);
                 l++;
@@ -155,9 +154,6 @@ public class LeaderboardActivity2 extends BaseActivity {
             cgAdapter = new SimpleAdapter(getApplicationContext(), cgData, R.layout.item_card_game, from, to);
             lvCardGame.setAdapter(cgAdapter);
             //adapter.notifyDataSetChanged();
-
-            new AsyncLoadColorMatchDetails().execute();
-            Toast.makeText(context,"Loading Completed",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -191,14 +187,13 @@ public class LeaderboardActivity2 extends BaseActivity {
         @Override
         protected void onPostExecute(ArrayList<Colormatch> result) {
             // TODO Auto-generated method stub
-
             int size = result.size();
             int l=1;
+            if(size>3){
+                size=3;
+            }
             cmData = new ArrayList<Map<String, Object>>(size);
             Map<String, Object> m;
-            if(size>5){
-                size=5;
-            }
             for(int j=0; j<size; j++){
                 m = new HashMap<String, Object>();
                 m.put(USER_NAME, result.get(j).getUsername());

@@ -1,10 +1,13 @@
 package com.example.timur.mainmenu.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +15,10 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.timur.mainmenu.R;
 import com.example.timur.mainmenu.model.Drop;
@@ -38,11 +43,18 @@ public class RainGameActivity extends Activity {
     private int mInterval = 2000;
     int lives, score, answer, wrongAnswer;
     final public String TAG = "My Tag";
+
+    private Toast toast;
+    private Context context;
+    private ImageView toastImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.rain_game_layout);
 
+        context = getApplicationContext();
         dropList = new ArrayList<Drop>();
         problemList = new ArrayList<String>();
 
@@ -130,7 +142,7 @@ public class RainGameActivity extends Activity {
 
         startRepeatingTask();
 
-        new CountDownTimer(10000, 1000){
+        new CountDownTimer(15000, 1000){
             @Override
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished>10000){
@@ -175,14 +187,19 @@ public class RainGameActivity extends Activity {
         int count=parent.getChildCount();
         for (int i=0; i< count; i++){
             if (answer == dropList.get(i).getAnswer()){
+                yesToast();
+                BaseActivity.playCorrectAnswer(context);
                 score++;
                 txtScore.setText("score: "+Integer.toString(score));
                 TextView currentView=dropList.get(i).getView();
                 currentView.clearAnimation();
                 ((RelativeLayout) currentView.getParent()).removeView(currentView);
                 dropList.remove(i);
+
                 break;
             }else {
+                noToast();
+                BaseActivity.playCorrectAnswer(context);
                 wrongAnswer++;
             }
         }
@@ -250,15 +267,38 @@ public class RainGameActivity extends Activity {
         dropList.remove(drop);
     }
 
-/*    void callResultDialog(){
-        Dialog resultDialog = new Dialog(RainDropGame.this);
-        resultDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        resultDialog.setContentView(getLayoutInflater().inflate(R.layout.result_dialog, (ViewGroup)findViewById(R.id.resultDialogContainer)));
-        TextView resultText = (TextView)resultDialog.findViewById(R.id.resultDialogText);
-        String result = score+" correct answers!";
-        resultText.setText(result);
-        resultDialog.show();
-    }*/
+    void yesToast(){
+        toast = new Toast(context);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_correct_wrong_layout, (ViewGroup)findViewById(R.id.custom_dialog));
+        toastImage = (ImageView)layout.findViewById(R.id.toastImage);
+        toastImage.setImageResource(R.drawable.correct);
+        toast = new Toast(context);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL,0, 400);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    //custom Toast for wrong answer
+    void noToast(){
+        toast = new Toast(context);
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_correct_wrong_layout, (ViewGroup)findViewById(R.id.custom_dialog));
+        toastImage = (ImageView)layout.findViewById(R.id.toastImage);
+        toastImage.setImageResource(R.drawable.wrong);
+        toast = new Toast(context);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL,0, 400);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // do nothing.
+    }
 
     public class DropDownAnimListener implements Animation.AnimationListener{
 

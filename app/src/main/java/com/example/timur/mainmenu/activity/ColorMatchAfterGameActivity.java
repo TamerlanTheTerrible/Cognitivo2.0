@@ -1,18 +1,14 @@
 package com.example.timur.mainmenu.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.timur.mainmenu.LoginActivityTest;
 import com.example.timur.mainmenu.R;
-import com.example.timur.mainmenu.RestAPI;
-import com.example.timur.mainmenu.UserDetailsTable;
+import com.example.timur.mainmenu.service.RestAPI;
 import com.example.timur.mainmenu.model.Colormatch;
 import com.example.timur.mainmenu.service.DBservice;
 

@@ -1,8 +1,10 @@
 package com.example.timur.mainmenu.activity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -24,8 +26,7 @@ import java.util.Random;
 /**
  * Created by Timur on 07/01/2016.
  */
-public class ColorMatchActivity extends BaseActivity {
-
+public class ColorMatchActivity extends Activity {
 
     TextView scoreView;
     TextView meaningView;
@@ -39,8 +40,6 @@ public class ColorMatchActivity extends BaseActivity {
     String currentMeaning;
 
     Context context;
-    MediaPlayer mpCorrect;
-    MediaPlayer mpWrong;
     private ArrayList<String> colors = new ArrayList<String>();
 
     Toast toast;
@@ -51,11 +50,12 @@ public class ColorMatchActivity extends BaseActivity {
         colors.add("red");
     }
 
-    private int score;
+    private int score=0;
     private int wrongAnswer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.color_match2);
 
         context = getApplicationContext();
@@ -67,16 +67,12 @@ public class ColorMatchActivity extends BaseActivity {
         noButton = (Button)findViewById(R.id.noButton);
         yesButton = (Button)findViewById(R.id.yesButton);
 
-        mpCorrect = MediaPlayer.create(this, R.raw.correct_answer);
-        mpWrong = MediaPlayer.create(this, R.raw.wrong_answer);
-
-
         toast = new Toast(context);
         newMeaning();
         newColor();
 
 
-        new CountDownTimer(10000, 1000){
+        new CountDownTimer(15000, 1000){
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -135,7 +131,6 @@ public class ColorMatchActivity extends BaseActivity {
         });
     }
 
-
     void newMeaning(){
         Random rand = new Random();
         int n = rand.nextInt(colors.size());
@@ -150,7 +145,6 @@ public class ColorMatchActivity extends BaseActivity {
         String col;
         int n = rand.nextInt(colors.size());
         int m = rand.nextInt(colors.size());
-
         switch (n){
             case 0:
                 meaningView.setTextColor(getResources().getColor(R.color.black));
@@ -187,7 +181,6 @@ public class ColorMatchActivity extends BaseActivity {
         if (id == noButton.getId()){
             if (col.equals(meaning)){
                 answer=false;
-
             }
             else {
                 answer=true;
@@ -206,14 +199,14 @@ public class ColorMatchActivity extends BaseActivity {
 
         //if the answer is correct score increases and tick appears
         if(answer){
+            yesToast();
+            BaseActivity.playCorrectAnswer(context);
             score++;
             scoreView.setText("score: "+Integer.toString(score));
-            yesToast();
-            mpCorrect.start();
         }else {
-            wrongAnswer++;
             noToast();
-            mpWrong.start();
+            BaseActivity.playWrongAnswer(context);
+            wrongAnswer++;
         }
     }
 
@@ -224,7 +217,7 @@ public class ColorMatchActivity extends BaseActivity {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_correct_wrong_layout, (ViewGroup)findViewById(R.id.custom_dialog));
         toastImage = (ImageView)layout.findViewById(R.id.toastImage);
-        toastImage.setImageResource(R.drawable.hom);
+        toastImage.setImageResource(R.drawable.correct);
         toast = new Toast(context);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0, 400);
         toast.setDuration(Toast.LENGTH_SHORT);
@@ -238,7 +231,7 @@ public class ColorMatchActivity extends BaseActivity {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_correct_wrong_layout, (ViewGroup)findViewById(R.id.custom_dialog));
         toastImage = (ImageView)layout.findViewById(R.id.toastImage);
-        toastImage.setImageResource(R.drawable.home_03);
+        toastImage.setImageResource(R.drawable.wrong);
         toast = new Toast(context);
         toast.setGravity(Gravity.CENTER_HORIZONTAL,0, 400);
         toast.setDuration(Toast.LENGTH_SHORT);
@@ -254,5 +247,10 @@ public class ColorMatchActivity extends BaseActivity {
         String result = score+" correct answers!";
         resultText.setText(result);
         resultDialog.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        // do nothing.
     }
 }

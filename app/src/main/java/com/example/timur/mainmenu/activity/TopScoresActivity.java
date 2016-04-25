@@ -8,12 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.timur.mainmenu.DeptTable;
-import com.example.timur.mainmenu.JSONParser;
+import com.example.timur.mainmenu.service.JSONParser;
 import com.example.timur.mainmenu.R;
-import com.example.timur.mainmenu.RestAPI;
-import com.example.timur.mainmenu.model.Cardgame;
-import com.example.timur.mainmenu.model.Colormatch;
+import com.example.timur.mainmenu.service.RestAPI;
 import com.example.timur.mainmenu.model.Raingame;
 
 import org.json.JSONObject;
